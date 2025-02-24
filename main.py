@@ -1,6 +1,13 @@
 from stats import *
+import sys
 
 def main():
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    file_to_open = sys.argv[1]
+
     # read file and print report
     with open(file_to_open) as f:
         file_contents = f.read()
@@ -11,10 +18,8 @@ def main():
 
     character_list = char_count(file_contents)
     for character in character_list:
-        print(f"The '{character['char']}' character was found {character['num']} times")
+        print(f"{character['char']}: {character['num']}")
     
     print("--- End report ---")
-
-file_to_open = "books/frankenstein.txt"
 
 main()
